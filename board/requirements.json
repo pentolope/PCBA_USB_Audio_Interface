@@ -25,6 +25,7 @@
   "derivation": {
     "method": "BRIEF.md was read and split; no design decision was taken. Every fixed_requirements entry, and every spec-table row sourced from the brief, carries a quotation that was checked by literal substring match against the brief bytes digested above. The build refuses to emit this file if any quotation is not found.",
     "quotations_verified": 22,
+    "where_the_quotations_are": "Every one of them is in this file: fixed_requirements[].brief_evidence and brief_spec_rows[].brief_evidence. The count above is the sum of those two lists, so it is recomputable from this repository alone - re-read BRIEF.md and check each string is a substring of it. brief_spec_rows carries the quotations behind the README's spec table, which would otherwise cite the brief with the evidence left in a build script.",
     "review": "two rounds of adversarial review against the brief, looking for invented requirements, lost requirements, evidence supporting a weaker claim than the one made beside it, and worksheet questions that presuppose their own answer"
   },
   "fixed_requirements": [
@@ -92,6 +93,53 @@
       "id": "REQ-13",
       "requirement": "This repository stays a consumer of the shared PCBA_AutoDesignAndTest toolkit; board-specific logic must not accumulate in the toolkit.",
       "brief_evidence": "The repository should remain a consumer of the shared `PCBA_AutoDesignAndTest` toolkit rather than accumulating board-specific logic in the toolkit."
+    }
+  ],
+  "brief_spec_rows": [
+    {
+      "aspect": "Function",
+      "value": "Stereo USB audio interface with stereo line input and stereo line output",
+      "brief_evidence": "Design a stereo USB audio interface with stereo line input and stereo line output."
+    },
+    {
+      "aspect": "Host interface / controller",
+      "value": "USB, implemented with either a USB-capable MCU or a USB audio bridge (the brief permits either)",
+      "brief_evidence": "Use a USB-capable MCU or USB audio bridge plus an audio codec supporting at least 24-bit/48 kHz operation."
+    },
+    {
+      "aspect": "Audio converter",
+      "value": "An audio codec supporting at least 24-bit/48 kHz operation (a floor, not a ceiling); no converter architecture is named",
+      "brief_evidence": "an audio codec supporting at least 24-bit/48 kHz operation"
+    },
+    {
+      "aspect": "Analog filtering",
+      "value": "Anti-alias / reconstruction components as recommended by the codec vendor",
+      "brief_evidence": "Include anti-alias/reconstruction components recommended by the codec vendor"
+    },
+    {
+      "aspect": "Clocking",
+      "value": "A low-jitter audio clock strategy is to be included; the source, topology and master/slave direction are not specified",
+      "brief_evidence": "Include anti-alias/reconstruction components recommended by the codec vendor, a low-jitter audio clock strategy"
+    },
+    {
+      "aspect": "Protection",
+      "value": "ESD is to be included at USB; no device, topology or immunity level stated",
+      "brief_evidence": "Include anti-alias/reconstruction components recommended by the codec vendor, a low-jitter audio clock strategy, ESD at USB"
+    },
+    {
+      "aspect": "Analog supplies",
+      "value": "Quiet analog supplies are to be included; no rail voltages, noise figures or regulator types stated",
+      "brief_evidence": "Include anti-alias/reconstruction components recommended by the codec vendor, a low-jitter audio clock strategy, ESD at USB, and quiet analog supplies."
+    },
+    {
+      "aspect": "Power/analog partitioning",
+      "value": "Switching power kept away from the codec and the analog connectors (a constraint on switching power wherever it is used; the brief does not say a switching converter must exist)",
+      "brief_evidence": "Keep switching power away from the codec and analog connectors."
+    },
+    {
+      "aspect": "Layer count",
+      "value": "Four layers are preferred — a stated preference, not a fixed count",
+      "brief_evidence": "Keep switching power away from the codec and analog connectors. Four layers are preferred."
     }
   ],
   "open_decisions": [
