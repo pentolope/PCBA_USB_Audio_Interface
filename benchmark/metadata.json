@@ -1,0 +1,16 @@
+{
+  "repo": "PCBA_USB_Audio_Interface",
+  "title": "Stereo USB Audio Interface",
+  "category": "audio-mixed-signal",
+  "difficulty": 3,
+  "detail": 3,
+  "layers": "4",
+  "stress": [
+    "audio analog noise",
+    "codec clocking",
+    "USB differential",
+    "ground return control"
+  ],
+  "benchmark_id": 10,
+  "brief_file": "BRIEF.md"
+}
